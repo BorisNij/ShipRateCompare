@@ -1,1 +1,28 @@
-spring.application.name=shiptime-integration-backend
+spring:
+    application:
+        name: shiptime-integration-backend
+    config:
+        import:
+            "file:./src/main/resources/.env[.properties]"
+    profiles:
+        active:
+            ${SRC_PROFILE:default}
+
+server:
+    port: ${SRC_PORT:9000}
+
+shiptime:
+    base-url: ${SHIPTIME_BASE_URL}
+    auth:
+        username: ${SHIPTIME_USERNAME}
+        password: ${SHIPTIME_PASSWORD}
+
+logging:
+    threshold:
+        console:
+            WARN
+        file:
+            TRACE
+    file:
+        name:
+            ${spring.application.name}_${APP_PROFILE:default}.log
