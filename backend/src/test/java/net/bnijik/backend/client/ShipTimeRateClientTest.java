@@ -1,13 +1,12 @@
 package net.bnijik.backend.client;
 
-import net.bnijik.backend.config.ClientConfig;
-import net.bnijik.backend.config.ClientLoggerRequestInterceptor;
+import net.bnijik.backend.config.ShipTimeClientConfig;
+import net.bnijik.backend.config.ShipTimeClientLogger;
 import net.bnijik.backend.model.AddressModel;
 import net.bnijik.backend.model.LineItemModel;
 import net.bnijik.backend.model.MoneyAmountModel;
 import net.bnijik.backend.model.QuoteModel;
 import net.bnijik.backend.payload.RateRequest;
-import net.bnijik.backend.payload.ShipTimeRateResponse;
 import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringJUnitConfig(classes = {ClientConfig.class, ClientLoggerRequestInterceptor.class}, initializers = ConfigDataApplicationContextInitializer.class)
+@SpringJUnitConfig(classes = {ShipTimeClientConfig.class, ShipTimeClientLogger.class}, initializers = ConfigDataApplicationContextInitializer.class)
 class ShipTimeRateClientTest {
 
     @Autowired
@@ -72,16 +71,15 @@ class ShipTimeRateClientTest {
 
 
         // When
-        var response = shipTimeRateClient.getRates(shipTimeRateRequest);
+        var shipTimeRates = shipTimeRateClient.getRates(shipTimeRateRequest);
 
         // Then
-        assertThat(response).isNotNull();
-        final ShipTimeRateResponse body = response.getBody();
-        assertThat(body).isNotNull();
-        assertThat(body.availableRates()).isNotEmpty();
+        assertThat(shipTimeRates).isNotNull();
+        assertThat(shipTimeRates).isNotNull();
+        assertThat(shipTimeRates.availableRates()).isNotEmpty();
 
         // Verify quote details
-        QuoteModel firstQuote = body.availableRates().get(0);
+        QuoteModel firstQuote = shipTimeRates.availableRates().get(0);
         assertThat(firstQuote.carrierId()).isNotEmpty();
         assertThat(firstQuote.carrierName()).isNotEmpty();
         assertThat(firstQuote.serviceId()).isNotEmpty();

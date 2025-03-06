@@ -1,8 +1,6 @@
 package net.bnijik.backend.config;
 
 import net.bnijik.backend.client.ShipTimeRateClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +9,11 @@ import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 @Configuration
-public class ClientConfig {
+public class ShipTimeClientConfig {
 
-    private static final Logger log = LoggerFactory.getLogger(ClientConfig.class);
-    private final ClientLoggerRequestInterceptor clientLoggerInterceptor;
+    private final ShipTimeClientLogger clientLoggerInterceptor;
 
-    public ClientConfig(ClientLoggerRequestInterceptor clientLoggerInterceptor) {
+    public ShipTimeClientConfig(ShipTimeClientLogger clientLoggerInterceptor) {
         this.clientLoggerInterceptor = clientLoggerInterceptor;
     }
 

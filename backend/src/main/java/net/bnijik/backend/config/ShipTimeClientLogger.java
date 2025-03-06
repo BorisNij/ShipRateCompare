@@ -20,9 +20,9 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @Component
-public class ClientLoggerRequestInterceptor implements ClientHttpRequestInterceptor {
+public class ShipTimeClientLogger implements ClientHttpRequestInterceptor {
 
-    private static final Logger log = LoggerFactory.getLogger(ClientLoggerRequestInterceptor.class);
+    private static final Logger log = LoggerFactory.getLogger(ShipTimeClientLogger.class);
     private static final int MAX_CONTENT_LENGTH = 1000;
 
     @Value("${client.logging.include-headers:false}")
