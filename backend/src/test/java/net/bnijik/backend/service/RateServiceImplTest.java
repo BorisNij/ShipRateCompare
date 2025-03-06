@@ -1,0 +1,56 @@
+package net.bnijik.backend.service;
+
+import net.bnijik.backend.Fixtures;
+import net.bnijik.backend.client.ShipTimeRateClient;
+import net.bnijik.backend.payload.RateRequest;
+import net.bnijik.backend.payload.RateResponse;
+import net.bnijik.backend.payload.converter.RateResponseConverter;
+import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
+import net.bnijik.backend.payload.externalApi.ShipTimeRateResponse;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+class RateServiceImplTest {
+
+    @Mock
+    private ShipTimeRateClient shipTimeRateClient;
+
+    @Mock
+    private RateResponseConverter rateResponseConverter;
+
+    private RateServiceImpl rateService;
+
+    @BeforeEach
+    void setUp() {
+        rateService = new RateServiceImpl(shipTimeRateClient, rateResponseConverter);
+    }
+
+    @Test
+    void getRates_ShouldReturnRateResponse() {
+        RateRequest rateRequest = Fixtures.createRateRequest();
+        ShipTimeRateRequest shipTimeRateRequest = Fixtures.createShipTimeRateRequest();
+        ShipTimeRateResponse shipTimeRateResponse = Fixtures.createShipTimeRateResponse();
+        RateResponse expectedResponse = Fixtures.createRateResponse();
+
+        when(rateResponseConverter.RateRequestToShipTimeRateRequest(rateRequest)).thenReturn(shipTimeRateRequest);
+        when(shipTimeRateClient.getRates(shipTimeRateRequest)).thenReturn(shipTimeRateResponse);
+        when(rateResponseConverter.ShipTimeRateResponseToRateResponse(shipTimeRateResponse)).thenReturn(expectedResponse);
+
+        RateResponse actualResponse = rateService.getRates(rateRequest);
+
+        assertNotNull(actualResponse);
+        assertEquals(expectedResponse, actualResponse);
+        verify(rateResponseConverter, times(1)).RateRequestToShipTimeRateRequest(rateRequest);
+        verify(shipTimeRateClient, times(1)).getRates(shipTimeRateRequest);
+        verify(rateResponseConverter, times(1)).ShipTimeRateResponseToRateResponse(shipTimeRateResponse);
+    }
+
+}
