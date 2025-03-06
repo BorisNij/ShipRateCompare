@@ -1,0 +1,14 @@
+services:
+    openapi_mock:
+        container_name: shiptime_mock_api
+        build:
+            context: ./shiptime_mock_api/
+            dockerfile: Dockerfile
+        volumes:
+            - ./shiptime_mock_api/openapi:/etc/openapi
+        environment:
+            - OPENAPI_MOCK_SPECIFICATION_URL=/etc/openapi/swagger.json
+            - OPENAPI_MOCK_DEBUG=1
+            - OPENAPI_MOCK_LOG_LEVEL=trace
+        ports:
+            - "8080:8080"
