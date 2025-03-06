@@ -6,5 +6,5 @@ import net.bnijik.backend.model.QuoteModel;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record RateResponse(List<QuoteModel> availableRates) {
+public record ShipTimeRateResponse(List<QuoteModel> availableRates) {
 }
