@@ -9,14 +9,18 @@ import net.bnijik.backend.payload.RateResponse;
 import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
 import net.bnijik.backend.payload.externalApi.ShipTimeRateResponse;
 
-import java.time.OffsetDateTime;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 public class Fixtures {
 
     private static final RateRequest.UnitOfMeasurement unitOfMeasurement = RateRequest.UnitOfMeasurement.METRIC;
     private static final RateRequest.PackageType packageType = RateRequest.PackageType.PACKAGE;
-    private static final OffsetDateTime shipDate = OffsetDateTime.now().plusDays(1);
+    public static final String SHIPTTIME_RATE_REQUEST_JSON;
     private static final MoneyAmountModel declaredValue = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 10000);
     private static final MoneyAmountModel totalCharge = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 5000);
 

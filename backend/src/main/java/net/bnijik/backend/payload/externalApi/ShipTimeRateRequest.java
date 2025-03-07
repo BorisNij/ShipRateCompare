@@ -9,7 +9,7 @@ import net.bnijik.backend.model.AddressModel;
 import net.bnijik.backend.model.LineItemModel;
 import net.bnijik.backend.payload.RateRequest;
 
-import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Builder
@@ -22,7 +22,7 @@ public record ShipTimeRateRequest(
         List<LineItemModel> lineItems,
         RateRequest.UnitOfMeasurement unitOfMeasurement,
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
-        OffsetDateTime shipDate) {
+        ZonedDateTime shipDate) {
 
 }
 
