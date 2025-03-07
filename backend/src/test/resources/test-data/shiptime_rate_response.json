@@ -1,0 +1,615 @@
+{
+    "availableRates": [
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 2418
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 39
+                    },
+                    "code": "CARBON",
+                    "name": "Carbon Surcharge"
+                },
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 673
+                    },
+                    "code": "FUEL",
+                    "name": "FUEL"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 157
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 3287
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 3130
+            },
+            "exchangeRate": 0,
+            "carrierId": "123",
+            "carrierName": "Loomis",
+            "serviceId": "DD",
+            "serviceName": "Loomis Ground",
+            "transitDays": 3,
+            "transitUnit": "Days",
+            "accessTimeInterval": "2:00",
+            "quoteId": "39f6f0a0aec81bef0cd67e81bccb4c5b"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 2258
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 599
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 143
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 3000
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 2857
+            },
+            "exchangeRate": 0,
+            "carrierId": "24",
+            "carrierName": "Canada Post",
+            "serviceId": "DOM.EP",
+            "serviceName": "Expedited Parcel",
+            "transitDays": 4,
+            "transitUnit": "Days",
+            "cutoffTime": "14:00",
+            "accessTimeInterval": "2:00",
+            "quoteId": "47615fc955f687041c2d65f166aa7030"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 6618
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 1753
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 419
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 8790
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 8371
+            },
+            "exchangeRate": 0,
+            "carrierId": "24",
+            "carrierName": "Canada Post",
+            "serviceId": "DOM.PC",
+            "serviceName": "Priority",
+            "transitDays": 1,
+            "transitUnit": "Days",
+            "cutoffTime": "14:00",
+            "accessTimeInterval": "2:00",
+            "quoteId": "35d691a71e5f359d0ee6862f9696c0d8"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 2509
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 275
+                    },
+                    "code": "INSURANCE",
+                    "name": "Coverage"
+                },
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 664
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 172
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 3620
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 3448
+            },
+            "exchangeRate": 0,
+            "carrierId": "24",
+            "carrierName": "Canada Post",
+            "serviceId": "DOM.RP",
+            "serviceName": "Regular Parcel",
+            "transitDays": 6,
+            "transitUnit": "Days",
+            "cutoffTime": "14:00",
+            "accessTimeInterval": "2:00",
+            "quoteId": "37025ffe4dd57856f4a1a7026a128bb6"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 4776
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 1266
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 302
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 6344
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 6042
+            },
+            "exchangeRate": 0,
+            "carrierId": "24",
+            "carrierName": "Canada Post",
+            "serviceId": "DOM.XP",
+            "serviceName": "Xpresspost",
+            "transitDays": 2,
+            "transitUnit": "Days",
+            "cutoffTime": "14:00",
+            "accessTimeInterval": "2:00",
+            "quoteId": "3800bddc6ecd49198ef00c7acf3a48a5"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 1876
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 521
+                    },
+                    "code": "FUEL",
+                    "name": "FUEL"
+                },
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 30
+                    },
+                    "code": "CARBON",
+                    "name": "Carbon Surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 121
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 2548
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 2427
+            },
+            "exchangeRate": 0,
+            "carrierId": "14",
+            "carrierName": "Canpar",
+            "serviceId": "1",
+            "serviceName": "Ground",
+            "transitDays": 4,
+            "transitUnit": "Days",
+            "cutoffTime": "12:30",
+            "accessTimeInterval": "4:00",
+            "quoteId": "805f78b8e77ca366b9569d83f8979dd0"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 5660
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 1574
+                    },
+                    "code": "FUEL",
+                    "name": "FUEL"
+                },
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 97
+                    },
+                    "code": "CARBON",
+                    "name": "Carbon Surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 367
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 7698
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 7331
+            },
+            "exchangeRate": 0,
+            "carrierId": "14",
+            "carrierName": "Canpar",
+            "serviceId": "5",
+            "serviceName": "Select",
+            "transitDays": 3,
+            "transitUnit": "Days",
+            "cutoffTime": "12:30",
+            "accessTimeInterval": "4:00",
+            "quoteId": "fe645e421d660ae54955f20e45e547ce"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 9518
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 1142
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 533
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 11193
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 10660
+            },
+            "exchangeRate": 0,
+            "carrierId": "26",
+            "carrierName": "Purolator",
+            "serviceId": "PurolatorExpress9AM",
+            "serviceName": "Purolator Express 9AM",
+            "transitDays": 1,
+            "transitUnit": "Days",
+            "cutoffTime": "17:30",
+            "accessTimeInterval": "2:00",
+            "quoteId": "2a62e6b3ba8f98c5fd0456813b293af2"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 7414
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 890
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 415
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 8719
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 8304
+            },
+            "exchangeRate": 0,
+            "carrierId": "26",
+            "carrierName": "Purolator",
+            "serviceId": "PurolatorExpress10:30AM",
+            "serviceName": "Purolator Express 10:30AM",
+            "transitDays": 1,
+            "transitUnit": "Days",
+            "cutoffTime": "17:30",
+            "accessTimeInterval": "2:00",
+            "quoteId": "a06a9b13b687096cfe9ea85a5ac593c9"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 7460
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 895
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 418
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 8773
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 8355
+            },
+            "exchangeRate": 0,
+            "carrierId": "26",
+            "carrierName": "Purolator",
+            "serviceId": "PurolatorExpress12PM",
+            "serviceName": "Purolator Express 12PM",
+            "transitDays": 1,
+            "transitUnit": "Days",
+            "cutoffTime": "17:30",
+            "accessTimeInterval": "2:00",
+            "quoteId": "4b7db897ce0de04b0e596bba077747b6"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 4865
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 584
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 272
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 5721
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 5449
+            },
+            "exchangeRate": 0,
+            "carrierId": "26",
+            "carrierName": "Purolator",
+            "serviceId": "PurolatorExpress",
+            "serviceName": "Purolator Express",
+            "transitDays": 1,
+            "transitUnit": "Days",
+            "cutoffTime": "17:30",
+            "accessTimeInterval": "2:00",
+            "quoteId": "3534a2c173f586d41229df8b2f9cc82f"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 4240
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 509
+                    },
+                    "code": "FUEL",
+                    "name": "Fuel"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 237
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 4986
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 4749
+            },
+            "exchangeRate": 0,
+            "carrierId": "26",
+            "carrierName": "Purolator",
+            "serviceId": "PurolatorGround",
+            "serviceName": "Purolator Ground",
+            "transitDays": 4,
+            "transitUnit": "Days",
+            "cutoffTime": "17:30",
+            "accessTimeInterval": "2:00",
+            "quoteId": "e5511d41ec8ba9bdc45d0f888286f680"
+        },
+        {
+            "baseCharge": {
+                "currency": "CAD",
+                "amount": 1879
+            },
+            "surcharges": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 523
+                    },
+                    "code": "FUEL",
+                    "name": "FUEL"
+                },
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 24
+                    },
+                    "code": "CARBON",
+                    "name": "Carbon surcharge"
+                }
+            ],
+            "taxes": [
+                {
+                    "price": {
+                        "currency": "CAD",
+                        "amount": 121
+                    },
+                    "code": "TAX",
+                    "name": "GST"
+                }
+            ],
+            "totalCharge": {
+                "currency": "CAD",
+                "amount": 2547
+            },
+            "totalBeforeTaxes": {
+                "currency": "CAD",
+                "amount": 2426
+            },
+            "exchangeRate": 0,
+            "carrierId": "39",
+            "carrierName": "GLS",
+            "serviceId": "GRD",
+            "serviceName": "Ground",
+            "transitDays": 3,
+            "transitUnit": "Days",
+            "cutoffTime": "16:00",
+            "accessTimeInterval": "2:00",
+            "quoteId": "de2b13324696c15ebee992d8379aa8f5"
+        }
+    ]
+}

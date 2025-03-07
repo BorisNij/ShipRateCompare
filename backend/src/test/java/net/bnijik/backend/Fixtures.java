@@ -23,6 +23,26 @@ public class Fixtures {
     public static final String SHIPTTIME_RATE_REQUEST_JSON;
     private static final MoneyAmountModel declaredValue = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 10000);
     private static final MoneyAmountModel totalCharge = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 5000);
+    public static final String SHIPTTIME_RATE_RESPONSE_JSON;
+    public static final String RATE_REQUEST_JSON;
+    public static final String RATE_RESPONSE_JSON;
+    private static final ZonedDateTime shipDate = ZonedDateTime.parse("2025-03-08T02:42:15.987Z");
+
+    static {
+        try {
+            SHIPTTIME_RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
+                    "test-data/shiptime_rate_request.json").toURI()));
+            SHIPTTIME_RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
+                    "test-data/shiptime_rate_response.json").toURI()));
+            RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/rate_request.json")
+                                                                 .toURI()));
+            RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/rate_response.json")
+                                                                  .toURI()));
+        } catch (IOException | URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public static AddressModel createFromAddress() {
         return AddressModel.builder()
