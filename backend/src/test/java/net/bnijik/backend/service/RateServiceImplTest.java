@@ -7,9 +7,9 @@ import net.bnijik.backend.payload.RateResponse;
 import net.bnijik.backend.payload.converter.RateResponseConverter;
 import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
 import net.bnijik.backend.payload.externalApi.ShipTimeRateResponse;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -26,12 +26,8 @@ class RateServiceImplTest {
     @Mock
     private RateResponseConverter rateResponseConverter;
 
+    @InjectMocks
     private RateServiceImpl rateService;
-
-    @BeforeEach
-    void setUp() {
-        rateService = new RateServiceImpl(shipTimeRateClient, rateResponseConverter);
-    }
 
     @Test
     void getRates_ShouldReturnRateResponse() {
