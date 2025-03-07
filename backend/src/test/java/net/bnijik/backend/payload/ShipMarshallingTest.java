@@ -10,19 +10,18 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @JsonTest
-class RateRequestMarshallingTest {
-
+public class ShipMarshallingTest {
     @Autowired
     private ObjectMapper objectMapper;
 
     @Test
     void shouldContainCorrectJsonStructure() throws Exception {
-        RateRequest request = Fixtures.createRateRequest();
+        ShipRequest request = Fixtures.createShipRequest();
 
         String actualJson = objectMapper.writeValueAsString(request);
 
         JsonNode actualNode = objectMapper.readTree(actualJson);
-        JsonNode expectedNode = objectMapper.readTree(Fixtures.RATE_REQUEST_JSON);
+        JsonNode expectedNode = objectMapper.readTree(Fixtures.SHIP_REQUEST_JSON);
 
         String actualKeys = objectMapper.writeValueAsString(actualNode.fieldNames());
         String expectedKeys = objectMapper.writeValueAsString(expectedNode.fieldNames());
@@ -32,21 +31,21 @@ class RateRequestMarshallingTest {
 
 
     @Test
-    void shouldMarshallAndUnmarshallRateRequest() throws Exception {
-        RateRequest originalRequest = Fixtures.createRateRequest();
+    void shouldMarshallAndUnmarshallShipRequest() throws Exception {
+        ShipRequest originalRequest = Fixtures.createShipRequest();
 
         String json = objectMapper.writeValueAsString(originalRequest);
-        RateRequest unmarshalledRequest = objectMapper.readValue(json, RateRequest.class);
+        ShipRequest unmarshalledRequest = objectMapper.readValue(json, ShipRequest.class);
 
         assertThat(unmarshalledRequest).usingRecursiveComparison().isEqualTo(originalRequest);
     }
 
     @Test
-    void shouldMarshallAndUnmarshallRateResponse() throws Exception {
-        RateResponse originalResponse = Fixtures.createRateResponse();
+    void shouldMarshallAndUnmarshallShipResponse() throws Exception {
+        ShipResponse originalResponse = Fixtures.createShipResponse();
 
         String json = objectMapper.writeValueAsString(originalResponse);
-        RateResponse unmarshalledResponse = objectMapper.readValue(json, RateResponse.class);
+        ShipResponse unmarshalledResponse = objectMapper.readValue(json, ShipResponse.class);
 
         assertThat(unmarshalledResponse).usingRecursiveComparison().isEqualTo(originalResponse);
     }

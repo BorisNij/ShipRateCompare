@@ -1,0 +1,7 @@
+{
+    "shipId": 4830519,
+    "trackingNumbers": [
+        "123456789012"
+    ],
+    "labelUrl": "http://sandboxrestapi.shiptime.com/rest/shipments/4830519/label"
+}
