@@ -3,7 +3,7 @@ spring:
         name: shiptime-integration-backend
     config:
         import:
-            "file:./src/main/resources/.env[.properties]"
+            "file:./backend/src/main/resources/.env[.properties]"
     profiles:
         active:
             ${SRC_PROFILE:default}
