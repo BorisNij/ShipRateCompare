@@ -37,7 +37,7 @@ public class ShipmentControllerIntegrationTest {
 
         mockMvc.perform(post("/api/shipments").contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(shipRequest)))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(objectMapper.writeValueAsString(expectedResponse)));
     }

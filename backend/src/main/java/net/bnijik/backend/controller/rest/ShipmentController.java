@@ -5,6 +5,7 @@ import net.bnijik.backend.payload.ShipRequest;
 import net.bnijik.backend.payload.ShipResponse;
 import net.bnijik.backend.service.ShipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ public class ShipmentController {
 
     @PostMapping
     public ResponseEntity<ShipResponse> createShipments(@RequestBody ShipRequest rateRequest) {
-        return ResponseEntity.ok(rateService.createShipments(rateRequest));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(rateService.createShipments(rateRequest));
     }
 }

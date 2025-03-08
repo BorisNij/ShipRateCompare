@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.net.MalformedURLException;
@@ -35,7 +36,7 @@ class ShipmentControllerTest {
         ResponseEntity<ShipResponse> responseEntity = shipController.createShipments(shipRequest);
 
         assertNotNull(responseEntity);
-        assertEquals(200, responseEntity.getStatusCode().value());
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(expectedResponse, responseEntity.getBody());
         verify(shipService, times(1)).createShipments(shipRequest);
     }
