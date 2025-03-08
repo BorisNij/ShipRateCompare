@@ -45,7 +45,7 @@ class ShipTimeClientTest {
 
     @Test
     void getRates_ShouldGetRatesSuccessfully() {
-        shipTimeMockServer.expect(requestTo(endsWith("/rest/rates")))
+        shipTimeMockServer.expect(requestTo(endsWith(ShipTimeClientConfig.API_PATH + ShipTimeClientConfig.RATE_RESOURCE)))
                 .andExpect(method(HttpMethod.POST))
                 .andExpect(content().json(Fixtures.SHIPTTIME_RATE_REQUEST_JSON))
                 .andRespond(withSuccess(Fixtures.SHIPTTIME_RATE_RESPONSE_JSON, MediaType.APPLICATION_JSON));
@@ -68,7 +68,7 @@ class ShipTimeClientTest {
 
     @Test
     void getShips_ShouldCreateShipmentsSuccessfully() {
-        shipTimeMockServer.expect(requestTo(endsWith("/rest/shipments")))
+        shipTimeMockServer.expect(requestTo(endsWith(ShipTimeClientConfig.API_PATH + ShipTimeClientConfig.SHIPMENT_RESOURCE)))
                 .andExpect(method(HttpMethod.POST))
                 .andExpect(content().json(Fixtures.SHIPTTIME_SHIP_REQUEST_JSON))
                 .andRespond(withSuccess(Fixtures.SHIPTTIME_SHIP_RESPONSE_JSON, MediaType.APPLICATION_JSON));

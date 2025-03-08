@@ -1,6 +1,7 @@
 package net.bnijik.backend.config;
 
 import net.bnijik.backend.client.ShipTimeClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,11 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class ShipTimeClientConfig {
     private final ShipTimeClientLogger shipTimeClientLogger;
 
+    public static final String API_PATH = "/rest";
+    public static final String RATE_RESOURCE = "/rates";
+    public static final String SHIPMENT_RESOURCE = "/shipments";
+
+    @Autowired
     public ShipTimeClientConfig(ShipTimeClientLogger shipTimeClientLogger) {
         this.shipTimeClientLogger = shipTimeClientLogger;
     }
