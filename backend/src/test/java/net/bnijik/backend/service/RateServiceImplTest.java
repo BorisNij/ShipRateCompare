@@ -1,7 +1,7 @@
 package net.bnijik.backend.service;
 
 import net.bnijik.backend.Fixtures;
-import net.bnijik.backend.client.ShipTimeRateClient;
+import net.bnijik.backend.client.ShipTimeClient;
 import net.bnijik.backend.payload.RateRequest;
 import net.bnijik.backend.payload.RateResponse;
 import net.bnijik.backend.payload.converter.RateResponseConverter;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 class RateServiceImplTest {
 
     @Mock
-    private ShipTimeRateClient shipTimeRateClient;
+    private ShipTimeClient shipTimeClient;
 
     @Mock
     private RateResponseConverter rateResponseConverter;
@@ -37,7 +37,7 @@ class RateServiceImplTest {
         RateResponse expectedResponse = Fixtures.createRateResponse();
 
         when(rateResponseConverter.RateRequestToShipTimeRateRequest(rateRequest)).thenReturn(shipTimeRateRequest);
-        when(shipTimeRateClient.getRates(shipTimeRateRequest)).thenReturn(shipTimeRateResponse);
+        when(shipTimeClient.getRates(shipTimeRateRequest)).thenReturn(shipTimeRateResponse);
         when(rateResponseConverter.ShipTimeRateResponseToRateResponse(shipTimeRateResponse)).thenReturn(expectedResponse);
 
         RateResponse actualResponse = rateService.getRates(rateRequest);
@@ -45,7 +45,7 @@ class RateServiceImplTest {
         assertNotNull(actualResponse);
         assertEquals(expectedResponse, actualResponse);
         verify(rateResponseConverter, times(1)).RateRequestToShipTimeRateRequest(rateRequest);
-        verify(shipTimeRateClient, times(1)).getRates(shipTimeRateRequest);
+        verify(shipTimeClient, times(1)).getRates(shipTimeRateRequest);
         verify(rateResponseConverter, times(1)).ShipTimeRateResponseToRateResponse(shipTimeRateResponse);
     }
 

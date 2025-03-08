@@ -24,12 +24,14 @@ import java.util.List;
 
 public class Fixtures {
 
-    public static final String SHIP_REQUEST_JSON;
-    public static final String SHIPTTIME_RATE_REQUEST_JSON;
-    public static final String SHIPTTIME_RATE_RESPONSE_JSON;
     public static final String RATE_REQUEST_JSON;
     public static final String RATE_RESPONSE_JSON;
+    public static final String SHIP_REQUEST_JSON;
+    public static final String SHIP_RESPONSE_JSON;
+    public static final String SHIPTTIME_RATE_REQUEST_JSON;
+    public static final String SHIPTTIME_RATE_RESPONSE_JSON;
     public static final String SHIPTTIME_SHIP_REQUEST_JSON;
+    public static final String SHIPTTIME_SHIP_RESPONSE_JSON;
     private static final RateRequest.UnitOfMeasurement UNIT_OF_MEASUREMENT = RateRequest.UnitOfMeasurement.METRIC;
     private static final RateRequest.PackageType PACKAGE_TYPE = RateRequest.PackageType.PACKAGE;
     private static final MoneyAmountModel DECLARED_VALUE = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 10000);
@@ -39,18 +41,22 @@ public class Fixtures {
 
     static {
         try {
-            SHIPTTIME_RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
-                    "test-data/shiptime_rate_request.json").toURI()));
-            SHIPTTIME_RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
-                    "test-data/shiptime_rate_response.json").toURI()));
             RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/rate_request.json")
                                                                  .toURI()));
             RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/rate_response.json")
                                                                   .toURI()));
             SHIP_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/ship_request.json")
                                                                  .toURI()));
+            SHIP_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/ship_response.json")
+                                                                  .toURI()));
+            SHIPTTIME_RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
+                    "test-data/shiptime_rate_request.json").toURI()));
+            SHIPTTIME_RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
+                    "test-data/shiptime_rate_response.json").toURI()));
             SHIPTTIME_SHIP_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
                     "test-data/shiptime_ship_request.json").toURI()));
+            SHIPTTIME_SHIP_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
+                    "test-data/shiptime_ship_response.json").toURI()));
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e);
         }

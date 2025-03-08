@@ -12,18 +12,34 @@ server:
     port:
         ${SRC_PORT:9000}
 
-shiptime:
-    base-url:
-        ${SHIPTIME_BASE_URL}
-    auth:
-        username:
-            ${SHIPTIME_USERNAME}
-        password:
-            ${SHIPTIME_PASSWORD}
-
 client:
     logging:
         include-headers: false
         enabled: true
         truncate-logs: true
         single-line: true
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: devlocal
+
+shiptime:
+    base-url: http://localhost:8080
+
+---
+spring:
+    config:
+        activate:
+            on-profile: "!devlocal"
+
+shiptime:
+    base-url:
+        https://sandboxrestapi.shiptime.com
+    auth:
+        username:
+            ${SHIPTIME_USERNAME}
+        password:
+            ${SHIPTIME_PASSWORD}

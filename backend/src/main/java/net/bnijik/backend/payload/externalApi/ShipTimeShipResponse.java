@@ -6,5 +6,5 @@ import java.net.URL;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record ShipTimeShipResponse(int ShipId, List<String> trackingNumbers, URL labelUrl) {
+public record ShipTimeShipResponse(int shipId, List<String> trackingNumbers, URL labelUrl) {
 }

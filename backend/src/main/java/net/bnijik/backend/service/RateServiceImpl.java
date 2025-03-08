@@ -1,6 +1,6 @@
 package net.bnijik.backend.service;
 
-import net.bnijik.backend.client.ShipTimeRateClient;
+import net.bnijik.backend.client.ShipTimeClient;
 import net.bnijik.backend.payload.RateRequest;
 import net.bnijik.backend.payload.RateResponse;
 import net.bnijik.backend.payload.converter.RateResponseConverter;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RateServiceImpl implements RateService {
-    private final ShipTimeRateClient shipTimeRateClient;
+    private final ShipTimeClient shipTimeClient;
     private final RateResponseConverter rateResponseConverter;
 
     @Autowired
-    public RateServiceImpl(ShipTimeRateClient shipTimeRateClient, RateResponseConverter rateResponseConverter) {
-        this.shipTimeRateClient = shipTimeRateClient;
+    public RateServiceImpl(ShipTimeClient shipTimeClient, RateResponseConverter rateResponseConverter) {
+        this.shipTimeClient = shipTimeClient;
         this.rateResponseConverter = rateResponseConverter;
     }
 
@@ -24,7 +24,7 @@ public class RateServiceImpl implements RateService {
     public RateResponse getRates(RateRequest rateRequest) {
         final ShipTimeRateRequest shipTimeRateRequest = rateResponseConverter.RateRequestToShipTimeRateRequest(
                 rateRequest);
-        final ShipTimeRateResponse shipTimeRates = shipTimeRateClient.getRates(shipTimeRateRequest);
+        final ShipTimeRateResponse shipTimeRates = shipTimeClient.getRates(shipTimeRateRequest);
         return rateResponseConverter.ShipTimeRateResponseToRateResponse(shipTimeRates);
     }
 }
