@@ -11,12 +11,6 @@ spring:
 server:
     port: ${SRC_PORT:9000}
 
-shiptime:
-    base-url: ${SHIPTIME_BASE_URL}
-    auth:
-        username: ${SHIPTIME_USERNAME}
-        password: ${SHIPTIME_PASSWORD}
-
 logging:
     threshold:
         console:
@@ -26,3 +20,29 @@ logging:
     file:
         name:
             ${spring.application.name}_${APP_PROFILE:default}.log
+
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: devlocal
+
+shiptime:
+    base-url: http://localhost:8080
+
+---
+spring:
+    config:
+        activate:
+            on-profile: "!devlocal"
+
+shiptime:
+    base-url:
+        https://sandboxrestapi.shiptime.com
+    auth:
+        username:
+            ${SHIPTIME_USERNAME}
+        password:
+            ${SHIPTIME_PASSWORD}
