@@ -4,7 +4,7 @@ import net.bnijik.backend.Fixtures;
 import net.bnijik.backend.config.ShipTimeClientConfig;
 import net.bnijik.backend.config.ShipTimeClientLogger;
 import net.bnijik.backend.model.QuoteModel;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

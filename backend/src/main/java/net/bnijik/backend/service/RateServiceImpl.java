@@ -4,8 +4,8 @@ import net.bnijik.backend.client.ShipTimeClient;
 import net.bnijik.backend.payload.RateRequest;
 import net.bnijik.backend.payload.RateResponse;
 import net.bnijik.backend.payload.converter.RateResponseConverter;
-import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
-import net.bnijik.backend.payload.externalApi.ShipTimeRateResponse;
+import net.bnijik.backend.payload.externalapi.ShipTimeRateRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeRateResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

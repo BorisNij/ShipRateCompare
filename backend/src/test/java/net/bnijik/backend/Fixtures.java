@@ -8,10 +8,10 @@ import net.bnijik.backend.payload.RateRequest;
 import net.bnijik.backend.payload.RateResponse;
 import net.bnijik.backend.payload.ShipRequest;
 import net.bnijik.backend.payload.ShipResponse;
-import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
-import net.bnijik.backend.payload.externalApi.ShipTimeRateResponse;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipRequest;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipResponse;
+import net.bnijik.backend.payload.externalapi.ShipTimeRateRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeRateResponse;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipResponse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

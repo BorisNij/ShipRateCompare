@@ -1,4 +1,4 @@
-package net.bnijik.backend.payload.externalApi;
+package net.bnijik.backend.payload.externalapi;
 
 public record ShipTimeShipRequest(String quoteId) {
 }

@@ -1,4 +1,4 @@
-package net.bnijik.backend.payload.externalApi;
+package net.bnijik.backend.payload.externalapi;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

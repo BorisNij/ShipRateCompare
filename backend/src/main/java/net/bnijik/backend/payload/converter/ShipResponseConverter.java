@@ -2,8 +2,8 @@ package net.bnijik.backend.payload.converter;
 
 import net.bnijik.backend.payload.ShipRequest;
 import net.bnijik.backend.payload.ShipResponse;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipRequest;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipResponse;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

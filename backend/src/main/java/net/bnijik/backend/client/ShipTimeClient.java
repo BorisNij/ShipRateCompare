@@ -1,10 +1,10 @@
 package net.bnijik.backend.client;
 
 import net.bnijik.backend.config.ShipTimeClientConfig;
-import net.bnijik.backend.payload.externalApi.ShipTimeRateRequest;
-import net.bnijik.backend.payload.externalApi.ShipTimeRateResponse;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipRequest;
-import net.bnijik.backend.payload.externalApi.ShipTimeShipResponse;
+import net.bnijik.backend.payload.externalapi.ShipTimeRateRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeRateResponse;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipRequest;
+import net.bnijik.backend.payload.externalapi.ShipTimeShipResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.service.annotation.HttpExchange;
