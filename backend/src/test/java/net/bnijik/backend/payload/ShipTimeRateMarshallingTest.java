@@ -6,27 +6,23 @@ import net.bnijik.backend.Fixtures;
 import net.bnijik.backend.payload.externalapi.ShipTimeRateRequest;
 import net.bnijik.backend.payload.externalapi.ShipTimeRateResponse;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@JsonTest
 public class ShipTimeRateMarshallingTest {
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper OBJECT_MAPPER = Fixtures.OBJECT_MAPPER;
 
     @Test
     void shouldContainCorrectJsonStructure() throws Exception {
         ShipTimeRateRequest request = Fixtures.createShipTimeRateRequest();
 
-        String actualJson = objectMapper.writeValueAsString(request);
+        String actualJson = OBJECT_MAPPER.writeValueAsString(request);
 
-        JsonNode actualNode = objectMapper.readTree(actualJson);
-        JsonNode expectedNode = objectMapper.readTree(Fixtures.SHIPTTIME_RATE_REQUEST_JSON);
+        JsonNode actualNode = OBJECT_MAPPER.readTree(actualJson);
+        JsonNode expectedNode = OBJECT_MAPPER.readTree(Fixtures.SHIPTTIME_RATE_REQUEST_JSON);
 
-        String actualKeys = objectMapper.writeValueAsString(actualNode.fieldNames());
-        String expectedKeys = objectMapper.writeValueAsString(expectedNode.fieldNames());
+        String actualKeys = OBJECT_MAPPER.writeValueAsString(actualNode.fieldNames());
+        String expectedKeys = OBJECT_MAPPER.writeValueAsString(expectedNode.fieldNames());
 
         assertThat(actualKeys).isEqualTo(expectedKeys);
     }
@@ -35,8 +31,8 @@ public class ShipTimeRateMarshallingTest {
     void shouldMarshallAndUnmarshallShipTimeRateRequest() throws Exception {
         ShipTimeRateRequest originalRequest = Fixtures.createShipTimeRateRequest();
 
-        String json = objectMapper.writeValueAsString(originalRequest);
-        ShipTimeRateRequest unmarshalledRequest = objectMapper.readValue(json, ShipTimeRateRequest.class);
+        String json = OBJECT_MAPPER.writeValueAsString(originalRequest);
+        ShipTimeRateRequest unmarshalledRequest = OBJECT_MAPPER.readValue(json, ShipTimeRateRequest.class);
 
         assertThat(unmarshalledRequest).usingRecursiveComparison().isEqualTo(originalRequest);
     }
@@ -45,8 +41,8 @@ public class ShipTimeRateMarshallingTest {
     void shouldMarshallAndUnmarshallShipTimeRateResponse() throws Exception {
         ShipTimeRateResponse originalResponse = Fixtures.createShipTimeRateResponse();
 
-        String json = objectMapper.writeValueAsString(originalResponse);
-        ShipTimeRateResponse unmarshalledResponse = objectMapper.readValue(json, ShipTimeRateResponse.class);
+        String json = OBJECT_MAPPER.writeValueAsString(originalResponse);
+        ShipTimeRateResponse unmarshalledResponse = OBJECT_MAPPER.readValue(json, ShipTimeRateResponse.class);
 
         assertThat(unmarshalledResponse).usingRecursiveComparison().isEqualTo(originalResponse);
     }

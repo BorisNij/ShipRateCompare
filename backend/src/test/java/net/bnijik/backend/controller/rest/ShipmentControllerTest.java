@@ -1,43 +1,41 @@
 package net.bnijik.backend.controller.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.bnijik.backend.Fixtures;
 import net.bnijik.backend.payload.ShipRequest;
 import net.bnijik.backend.payload.ShipResponse;
 import net.bnijik.backend.service.ShipmentService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.*;
-
-@ExtendWith(MockitoExtension.class)
-class ShipmentControllerTest {
-    @Mock
+@WebMvcTest(ShipmentController.class)
+public class ShipmentControllerTest {
+    private final ObjectMapper OBJECT_MAPPER = Fixtures.OBJECT_MAPPER;
+    @Autowired
+    private MockMvc mockMvc;
+    @MockitoBean
     private ShipmentService shipService;
 
-    @InjectMocks
-    private ShipmentController shipController;
-
     @Test
-    void getShips_ShouldReturnSuccessfulResponse() throws MalformedURLException, URISyntaxException {
+    void getShips_ShouldReturnSuccessfulResponse() throws Exception {
         ShipRequest shipRequest = Fixtures.createShipRequest();
         ShipResponse expectedResponse = Fixtures.createShipResponse();
-        when(shipService.createShipments(shipRequest)).thenReturn(expectedResponse);
+        when(shipService.createShipments(any(ShipRequest.class))).thenReturn(expectedResponse);
 
-        ResponseEntity<ShipResponse> responseEntity = shipController.createShipments(shipRequest);
-
-        assertNotNull(responseEntity);
-        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
-        assertEquals(expectedResponse, responseEntity.getBody());
-        verify(shipService, times(1)).createShipments(shipRequest);
+        mockMvc.perform(post("/api/shipments").contentType(MediaType.APPLICATION_JSON)
+                                .content(OBJECT_MAPPER.writeValueAsString(shipRequest)))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(OBJECT_MAPPER.writeValueAsString(expectedResponse)));
     }
 }

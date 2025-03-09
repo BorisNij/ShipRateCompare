@@ -4,43 +4,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.bnijik.backend.Fixtures;
 import net.bnijik.backend.payload.RateRequest;
 import net.bnijik.backend.payload.RateResponse;
-import net.bnijik.backend.service.RateService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(RateController.class)
-class RateControllerIntegrationTest {
+//@WebMvcTest(RateController.class)
+
+//@SpringJUnitConfig(classes = {ShipTimeClientConfig.class, ShipTimeClientLogger.class, RateServiceImpl.class, RateController.class, RateResponseConverterImpl.class}, initializers = ConfigDataApplicationContextInitializer.class)
+//@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+public class RateControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper OBJECT_MAPPER = Fixtures.OBJECT_MAPPER;
 
-    @MockitoBean
-    private RateService rateService;
+
+//    @Autowired
+//    private RateController rateController;
 
     @Test
     void getRates_ShouldReturnSuccessfulResponse() throws Exception {
         RateRequest rateRequest = Fixtures.createRateRequest();
-        RateResponse expectedResponse = Fixtures.createRateResponse();
-        when(rateService.getRates(any(RateRequest.class))).thenReturn(expectedResponse);
 
-        mockMvc.perform(post("/api/rates").contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(rateRequest)))
+        String responseJson = mockMvc.perform(post("/api/rates")
+                                                      .contentType(MediaType.APPLICATION_JSON)
+                                                      .content(OBJECT_MAPPER.writeValueAsString(rateRequest)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(objectMapper.writeValueAsString(expectedResponse)));
-    }
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
 
+        RateResponse actualResponse = OBJECT_MAPPER.readValue(responseJson, RateResponse.class);
+        assertThat(actualResponse.availableRates()).isNotEmpty();
+    }
 }

@@ -1,5 +1,7 @@
 package net.bnijik.backend;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import net.bnijik.backend.model.AddressModel;
 import net.bnijik.backend.model.LineItemModel;
 import net.bnijik.backend.model.MoneyAmountModel;
@@ -13,51 +15,93 @@ import net.bnijik.backend.payload.externalapi.ShipTimeRateResponse;
 import net.bnijik.backend.payload.externalapi.ShipTimeShipRequest;
 import net.bnijik.backend.payload.externalapi.ShipTimeShipResponse;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Fixtures {
 
-    public static final String RATE_REQUEST_JSON;
-    public static final String RATE_RESPONSE_JSON;
-    public static final String SHIP_REQUEST_JSON;
-    public static final String SHIP_RESPONSE_JSON;
-    public static final String SHIPTTIME_RATE_REQUEST_JSON;
-    public static final String SHIPTTIME_RATE_RESPONSE_JSON;
-    public static final String SHIPTTIME_SHIP_REQUEST_JSON;
-    public static final String SHIPTTIME_SHIP_RESPONSE_JSON;
+
     private static final RateRequest.UnitOfMeasurement UNIT_OF_MEASUREMENT = RateRequest.UnitOfMeasurement.METRIC;
     private static final RateRequest.PackageType PACKAGE_TYPE = RateRequest.PackageType.PACKAGE;
     private static final MoneyAmountModel DECLARED_VALUE = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 10000);
     private static final MoneyAmountModel TOTAL_CHARGE = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 5000);
-    private static final ZonedDateTime SHIP_DATE = ZonedDateTime.parse("2025-03-08T02:42:15.987Z");
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     private static final String QUOTE_ID = "QUOTE789";
+    public static final String RATE_RESPONSE_JSON = getRateResponseJson();
+    public static final String SHIP_REQUEST_JSON = getShipRequestJson();
+    public static final String SHIP_RESPONSE_JSON = getShipResponseJson();
+    public static final String SHIPTTIME_RATE_RESPONSE_JSON = getShipTimeRateResponseJson();
+    public static final String SHIPTTIME_SHIP_REQUEST_JSON = getShipTimeShipRequestJson();
+    public static final String SHIPTTIME_SHIP_RESPONSE_JSON = getShipTimeShipResponseJson();
+    private static final ZonedDateTime SHIP_DATE = ZonedDateTime.now(ZoneOffset.UTC).truncatedTo(ChronoUnit.MILLIS);
+    public static final String RATE_REQUEST_JSON = getRateRequestJson();
+    public static final String SHIPTTIME_RATE_REQUEST_JSON = getShipTimeRateRequestJson();
 
-    static {
+    public static String getRateRequestJson() {
         try {
-            RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/rate_request.json")
-                                                                 .toURI()));
-            RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/rate_response.json")
-                                                                  .toURI()));
-            SHIP_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/ship_request.json")
-                                                                 .toURI()));
-            SHIP_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource("test-data/ship_response.json")
-                                                                  .toURI()));
-            SHIPTTIME_RATE_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
-                    "test-data/shiptime_rate_request.json").toURI()));
-            SHIPTTIME_RATE_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
-                    "test-data/shiptime_rate_response.json").toURI()));
-            SHIPTTIME_SHIP_REQUEST_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
-                    "test-data/shiptime_ship_request.json").toURI()));
-            SHIPTTIME_SHIP_RESPONSE_JSON = Files.readString(Path.of(ClassLoader.getSystemResource(
-                    "test-data/shiptime_ship_response.json").toURI()));
-        } catch (IOException | URISyntaxException e) {
+            return OBJECT_MAPPER.writeValueAsString(createRateRequest());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getRateResponseJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createRateResponse());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getShipRequestJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createShipRequest());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getShipResponseJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createShipResponse());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getShipTimeRateRequestJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createShipTimeRateRequest());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getShipTimeRateResponseJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createShipTimeRateResponse());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getShipTimeShipRequestJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createShipTimeShipRequest());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getShipTimeShipResponseJson() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(createShipTimeShipResponse());
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
