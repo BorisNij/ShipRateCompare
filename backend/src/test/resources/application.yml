@@ -33,7 +33,7 @@ shiptime:
 spring:
     config:
         activate:
-            on-profile: "!devlocal"
+            on-profile: sandbox
 
 shiptime:
     base-url:
