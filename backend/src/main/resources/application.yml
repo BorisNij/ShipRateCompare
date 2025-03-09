@@ -16,6 +16,12 @@ logging:
     file:
         name: ${spring.application.name}_${APP_PROFILE:default}.log
 
+client:
+    logging:
+        include-headers: false
+        enabled: true
+        truncate-logs: true
+        single-line: true
 
 ---
 
