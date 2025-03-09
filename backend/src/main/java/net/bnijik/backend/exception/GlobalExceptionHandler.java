@@ -50,6 +50,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                                     HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = {RuntimeException.class})
+    protected ResponseEntity<ErrorResponse> handleOtherExceptions(RuntimeException e) {
+
+        LOG.error("Unhandled error: ", e);
+
+        return new ResponseEntity<>(new ErrorResponse(List.of(e.getMessage())),
+                                    new HttpHeaders(),
+                                    HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     private ErrorModel parseErrorBody(String body, HttpServletRequest request) {
         try {
             return objectMapper.readValue(body, ErrorModel.class);
