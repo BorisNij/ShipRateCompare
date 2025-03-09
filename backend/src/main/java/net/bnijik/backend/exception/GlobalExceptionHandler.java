@@ -32,8 +32,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
-    public ResponseEntity<ErrorResponse> handleBadRequest(HttpClientErrorException.BadRequest ex,
-                                                          HttpServletRequest request) {
+    protected ResponseEntity<ErrorResponse> handleBadRequest(HttpClientErrorException.BadRequest ex,
+                                                             HttpServletRequest request) {
         ErrorModel errorModel = Optional.ofNullable(ex.getResponseBodyAsString())
                 .map(body -> parseErrorBody(body, request))
                 .orElseGet(() -> new ErrorModel(false, List.of(ex.getMessage())));
