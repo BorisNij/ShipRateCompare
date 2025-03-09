@@ -31,6 +31,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         this.objectMapper = objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    @ExceptionHandler(ConfigurationException.class)
+    protected ResponseEntity<ErrorResponse> handleBadCredentialConfig(ConfigurationException ex) {
+        return new ResponseEntity<>(new ErrorResponse(List.of(ex.getMessage())),
+                                    new HttpHeaders(),
+                                    HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
     protected ResponseEntity<ErrorResponse> handleBadRequest(HttpClientErrorException.BadRequest ex,
                                                              HttpServletRequest request) {
