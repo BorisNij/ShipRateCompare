@@ -66,6 +66,7 @@ class ShipTimeClientTest {
         assertThat(firstQuote.serviceName()).isNotEmpty();
         assertThat(firstQuote.totalCharge()).isNotNull();
         assertThat(firstQuote.quoteId()).isNotEmpty();
+        shipTimeMockServer.verify();
     }
 
     @Test
