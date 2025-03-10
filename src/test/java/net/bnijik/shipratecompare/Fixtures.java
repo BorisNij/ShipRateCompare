@@ -30,15 +30,14 @@ public class Fixtures {
     private static final RateRequest.PackageType PACKAGE_TYPE = RateRequest.PackageType.PACKAGE;
     private static final MoneyAmountModel DECLARED_VALUE = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 10000);
     private static final MoneyAmountModel TOTAL_CHARGE = new MoneyAmountModel(MoneyAmountModel.Currency.CAD, 5000);
-    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     private static final String QUOTE_ID = "QUOTE789";
-    public static final String RATE_RESPONSE_JSON = getRateResponseJson();
+    private static final ZonedDateTime SHIP_DATE = ZonedDateTime.now(ZoneOffset.UTC).truncatedTo(ChronoUnit.MILLIS);
+
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     public static final String SHIP_REQUEST_JSON = getShipRequestJson();
-    public static final String SHIP_RESPONSE_JSON = getShipResponseJson();
     public static final String SHIPTTIME_RATE_RESPONSE_JSON = getShipTimeRateResponseJson();
     public static final String SHIPTTIME_SHIP_REQUEST_JSON = getShipTimeShipRequestJson();
     public static final String SHIPTTIME_SHIP_RESPONSE_JSON = getShipTimeShipResponseJson();
-    private static final ZonedDateTime SHIP_DATE = ZonedDateTime.now(ZoneOffset.UTC).truncatedTo(ChronoUnit.MILLIS);
     public static final String RATE_REQUEST_JSON = getRateRequestJson();
     public static final String SHIPTTIME_RATE_REQUEST_JSON = getShipTimeRateRequestJson();
 

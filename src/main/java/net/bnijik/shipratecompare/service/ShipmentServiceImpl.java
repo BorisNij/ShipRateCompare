@@ -22,9 +22,9 @@ public class ShipmentServiceImpl implements ShipmentService {
 
     @Override
     public ShipResponse createShipments(ShipRequest shipRequest) {
-        ShipTimeShipRequest shipTimeShipRequest = shipResponseConverter.ShipRequestToShipTimeShipRequest(
+        ShipTimeShipRequest shipTimeShipRequest = shipResponseConverter.shipRequestToShipTimeShipRequest(
                 shipRequest);
         ShipTimeShipResponse shipTimeShipments = shipTimeClient.createShipments(shipTimeShipRequest);
-        return shipResponseConverter.ShipTimeShipResponseToShipResponse(shipTimeShipments);
+        return shipResponseConverter.shipTimeShipResponseToShipResponse(shipTimeShipments);
     }
 }

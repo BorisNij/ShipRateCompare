@@ -29,7 +29,7 @@ public class RateServiceImpl implements RateService {
 
     @Override
     public RateResponse getRates(RateRequest rateRequest) {
-        ShipTimeRateRequest shipTimeRateRequest = rateResponseConverter.RateRequestToShipTimeRateRequest(
+        ShipTimeRateRequest shipTimeRateRequest = rateResponseConverter.rateRequestToShipTimeRateRequest(
                 rateRequest);
         ShipTimeRateResponse shipTimeRates;
         try {
@@ -39,6 +39,6 @@ public class RateServiceImpl implements RateService {
             throw new ConfigurationException(String.format("Bad user name or password configured for %s",
                                                            applicationName));
         }
-        return rateResponseConverter.ShipTimeRateResponseToRateResponse(shipTimeRates);
+        return rateResponseConverter.shipTimeRateResponseToRateResponse(shipTimeRates);
     }
 }

@@ -9,11 +9,7 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ShipResponseConverter {
-    ShipResponse ShipTimeShipResponseToShipResponse(ShipTimeShipResponse shipTimeShipResponse);
+    ShipResponse shipTimeShipResponseToShipResponse(ShipTimeShipResponse shipTimeShipResponse);
 
-    ShipTimeShipResponse ShipResponseToShipTimeShipResponse(ShipResponse shipResponse);
-
-    ShipRequest ShipTimeShipRequestToShipRequest(ShipTimeShipRequest shipTimeShipRequest);
-
-    ShipTimeShipRequest ShipRequestToShipTimeShipRequest(ShipRequest shipRequest);
+    ShipTimeShipRequest shipRequestToShipTimeShipRequest(ShipRequest shipRequest);
 }
