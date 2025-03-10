@@ -5,6 +5,9 @@ spring:
         import: "file:./src/main/resources/.env[.properties]"
     profiles:
         active: ${SRC_PROFILE:sandbox}
+    banner:
+        location:
+            classpath:banner.txt
 
 server:
     port: ${SRC_PORT:9000}

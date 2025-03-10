@@ -1,0 +1,10 @@
+Welcome to Ship Rate Comparison Tool :)
+
+   ::  ::  ::  ::  ::  ::  ::  ::
+
+Running with the following configuration -
+Java version: ${java.version}
+Spring Boot version: ${spring-boot.version}
+Active profile: ${spring.profiles.active}
+
+   ::  ::  ::  ::  ::  ::  ::  ::
