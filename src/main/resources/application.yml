@@ -1,0 +1,40 @@
+spring:
+    application:
+        name: shiptime-integration
+    config:
+        import: "file:./src/main/resources/.env[.properties]"
+    profiles:
+        active: ${SRC_PROFILE:sandbox}
+
+server:
+    port: ${SRC_PORT:9000}
+
+logging:
+    threshold:
+        console: WARN
+        file: TRACE
+    file:
+        name: ${spring.application.name}_${spring.profiles.active}.log
+
+client:
+    logging:
+        include-headers: false
+        enabled: true
+        truncate-logs: true
+        single-line: true
+
+shiptime:
+    base-url: https://sandboxrestapi.shiptime.com
+    auth:
+        username: ${SHIPTIME_USERNAME}
+        password: ${SHIPTIME_PASSWORD}
+
+---
+
+spring:
+    config:
+        activate:
+            on-profile: devlocal
+
+shiptime:
+    base-url: http://localhost:8080
