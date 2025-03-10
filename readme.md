@@ -27,7 +27,7 @@ selected, the app will enable downloading the label PDF for the selected carrier
     - The integration test can be run either against the mock ShipTime API or the live ShipTime API using the profiles (
       see Running tests section below).
 - Frontend implemented with vanilla JavaScript, HTML and CSS for a three-step
-  shipping workflow, enabling to dynamically retrieve and select carriers from fetched shipping rates, and a download
+  shipping workflow, enabling to dynamically retrieve and select carriers for fetched shipping rates, and downloading
   shipment label. Shows errors in a simple alert window.
 - Configurable logging (see `application.yml` for details).
   - By default, log files will be saved in the root directory of the project (will include truncated request and response payloads).
@@ -39,7 +39,6 @@ selected, the app will enable downloading the label PDF for the selected carrier
 - **Dependencies**:
     - Spring Boot
     - MapStruct
-    - Vanilla JavaScript and HTML for the frontend
     - JUnit 5
     - Mockito
     - Maven
@@ -177,7 +176,7 @@ An `.env.example` file is provided as a template and should be renamed to `.env`
 
 - Rename the `src/main/resources/.env.example` file to `src/main/resources/.env`, update the credentials, then run -
 
-On Linux:
+On Linux or macOS:
 
 ```shell
 ./mvnw spring-boot:run
@@ -199,12 +198,12 @@ mvnw.cmd spring-boot:run
 On Linux or Windows:
 
 ```shell
-cd src/test/resources && docker-compose up -d
+docker-compose -f src/test/resources/docker-compose.yml up -d
 ```
 
 If the container started successfully, proceed to run the application with the following command -
 
-On Linux:
+On Linux or macOS:
 
 ```shell
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=devlocal
@@ -224,7 +223,7 @@ mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=devlocal
 
 - Running the following command will run the tests against the live sandbox ShipTime API -
 
-On Linux:
+On Linux or macOS:
 
 ```shell
 ./mvnw clean test
@@ -238,7 +237,7 @@ mvnw.cmd clean test
 
 - Running the following command will only run unit tests (and will skip calling ShipTime API) -
 
-On Linux:
+On Linux or macOS:
 
 ```shell
 ./mvnw clean test -Dtest='!RateControllerIntegrationTest'  
@@ -260,12 +259,12 @@ mvnw.cmd clean test -Dtest='!RateControllerIntegrationTest'
 On Linux or Windows:
 
 ```shell
-cd src/test/resources && docker-compose up -d
+docker-compose -f src/test/resources/docker-compose.yml up -d
 ```
 
 If the container started successfully, proceed to run the application with the following command -
 
-On Linux:
+On Linux or macOS:
 
 ```shell
 ./mvnw clean test -Dspring-boot.run.profiles=devlocal
