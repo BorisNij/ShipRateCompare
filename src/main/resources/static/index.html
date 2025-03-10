@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="styles.css" rel="stylesheet">
+    <title>ShipTime</title>
+</head>
+
+<body>
+<main>
+    
+    <!-- Step 1 -->
+    <section class="step-one">
+        <h2>Step 1: Please fill out the form</h2>
+        
+        <div class="step-one-inner">
+            <div class="origin_address">
+                <h3>Origin Address</h3>
+                <input class="origin-address-line" placeholder="Address Line I" type="text">
+                <input class="origin-city" placeholder="City" type="text">
+                <select class="origin-province">
+                    <option selected value="">Province</option>
+                </select>
+                <input class="origin-company" placeholder="Company Name" type="text">
+                <input class="origin-attention" placeholder="Attention" type="text">
+                <input class="origin-postal-code" placeholder="Postal Code" type="text">
+                <select class="origin-country" id="origin-country">
+                    <option selected value="country">Country</option>
+                    <option value="CA">Canada</option>
+                </select>
+                <input class="origin-phone" placeholder="Phone Number" type="number">
+            </div>
+            <div class="destination_address">
+                <h3>Destination Address</h3>
+                <input class="destination-address-line" placeholder="Address Line I" type="text">
+                <input class="destination-city" placeholder="City" type="text">
+                <select class="destination-province">
+                    <option selected value="">Province</option>
+                </select>
+                <input class="destination-company" placeholder="Company Name" type="text">
+                <input class="destination-attention" placeholder="Attention" type="text">
+                <input class="destination-postal-code" placeholder="Postal Code" type="text">
+                <select class="destination-country" id="destination-country">
+                    <option selected value="country">Country</option>
+                    <option value="CA">Canada</option>
+                </select>
+                <input class="destination-phone" placeholder="Phone Number" type="text">
+            </div>
+        </div>
+        
+        <div class="dimentions">
+            <input class="length" placeholder="Length in cm" type="number">
+            <input class="width" placeholder="Width in cm" type="number">
+            <input class="height" placeholder="Height in cm" type="number">
+            <input class="weight" placeholder="Weight in kg" type="number">
+        </div>
+        
+        <button class="btn get-rates-btn">Get Rates</button>
+    </section>
+    
+    <div class="loader">
+        Loading...
+    </div>
+    
+    <!-- Step 2 -->
+    
+    <section class="step-two">
+        <h2>Step 2: Choose Carrier</h2>
+        
+        <table class="carrier-table">
+            <thead>
+            <tr>
+                <th>Carrier</th>
+                <th>Service</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+        
+        <button class="btn" disabled>Next</button>
+    
+    </section>
+    
+    <!-- Step 3 -->
+    
+    <section class="step-three">
+        <h2>Step 3: Success</h2>
+        
+        <div class="step-three-inner">
+            <p class="ship-id">:</p>
+            <p class="tracking-number"></p>
+        </div>
+        
+        <button class="btn download-pdf-btn">Download PDF Label</button>
+    </section>
+</main>
+
+<script src="index.js"></script>
+</body>
+
+</html>
