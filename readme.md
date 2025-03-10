@@ -29,6 +29,8 @@ selected, the app will enable downloading the label PDF for the selected carrier
 - Frontend implemented with vanilla JavaScript, HTML and CSS for a three-step
   shipping workflow, enabling to dynamically retrieve and select carriers from fetched shipping rates, and a download
   shipment label. Shows errors in a simple alert window.
+- Configurable logging (see `application.yml` for details).
+  - By default, log files will be saved in the root directory of the project (will include truncated request and response payloads).
 
 ### Technologies Used
 
@@ -47,7 +49,102 @@ selected, the app will enable downloading the label PDF for the selected carrier
 - HTML 5
 - CSS 3
 
-### Design
+### Architecture and design
+
+3-tier (data-application-presentation layers) architecture. The application component follows the model-view-controller design:
+
+```mermaid
+classDiagram
+    %% Presentation Layer
+    class Frontend["Frontend UI"]
+    
+    %% Application Layer - Controllers
+    class RateController{
+        -RateService rateService
+        +getRates(RateRequest): ResponseEntity
+    }
+    class ShipmentController{
+        -ShipmentService shipmentService
+        +createShipments(ShipRequest): ResponseEntity
+    }
+
+    %% Application Layer - Services
+    class RateService{
+        <<interface>>
+        +getRates(RateRequest): RateResponse
+    }
+    class RateServiceImpl{
+        -ShipTimeClient shipTimeClient
+        -RateResponseConverter converter
+        +getRates(RateRequest): RateResponse
+    }
+    class ShipmentService{
+        <<interface>>
+        +createShipments(ShipRequest): ShipResponse
+    }
+    class ShipmentServiceImpl{
+        -ShipTimeClient shipTimeClient
+        -ShipResponseConverter converter
+        +createShipments(ShipRequest): ShipResponse
+    }
+
+    %% Data Layer
+    class ShipTimeClient{
+        <<interface>>
+        +getRates(ShipTimeRateRequest): ShipTimeRateResponse
+        +createShipments(ShipTimeShipRequest): ShipTimeShipResponse
+    }
+
+    %% External API
+    class ShipTimeAPI["ShipTime REST API"]
+
+    %% Relationships
+    Frontend <--> RateController: HTTP
+    Frontend <--> ShipmentController: HTTP
+    
+    RateController --> RateService
+    RateService <|.. RateServiceImpl
+    RateServiceImpl --> ShipTimeClient
+    
+    ShipmentController --> ShipmentService
+    ShipmentService <|.. ShipmentServiceImpl
+    ShipmentServiceImpl --> ShipTimeClient
+
+    ShipTimeClient <--> ShipTimeAPI: HTTP
+
+```
+
+Data flow sequence diagram:
+
+```mermaid
+sequenceDiagram
+    participant FE as Frontend
+    participant CTRL as BE Controller
+    participant SVC as BE Service
+    participant CLIENT as BE REST Client
+    participant API as ShipTime API
+
+    FE->>+CTRL: POST /api/rates<br/>JSON RateRequest
+    CTRL->>+SVC: POJO RateRequest
+    SVC->>+CLIENT: POJO ShipTimeRateRequest
+    CLIENT->>+API: POST /rest/rates<br/>JSON ShipTimeRateRequest
+    API-->>-CLIENT: JSON ShipTimeRateResponse
+    CLIENT-->>-SVC: POJO ShipTimeRateResponse
+    SVC-->>-CTRL: POJO RateResponse
+    CTRL-->>-FE: JSON RateResponse
+
+    FE->>+CTRL: POST /api/shipments<br/>JSON ShipRequest
+    CTRL->>+SVC: POJO ShipRequest  
+    SVC->>+CLIENT: POJO ShipTimeShipRequest
+    CLIENT->>+API: POST /rest/shipments<br/>JSON ShipTimeShipRequest
+    API-->>-CLIENT: JSON ShipTimeShipResponse
+    CLIENT-->>-SVC: POJO ShipTimeShipResponse
+    SVC-->>-CTRL: POJO ShipResponse
+    CTRL-->>-FE: JSON ShipResponse
+
+```
+
+
 
 ## Configuration
 
@@ -67,8 +164,8 @@ The configurations can be updated in `application.yml` and environment variables
 
 The following can be defined in the `.env` file:
 
-- `SHIPTIME_USERNAME`: Your ShipTime API username.
-- `SHIPTIME_PASSWORD`: Your ShipTime API password.
+- `SHIPTIME_USERNAME`: ShipTime API username.
+- `SHIPTIME_PASSWORD`: ShipTime API password.
 - `SRC_PORT`: The port on which the application runs (optional).
 - `SRC_PROFILE`: The Spring profile to be active (optional).
 
