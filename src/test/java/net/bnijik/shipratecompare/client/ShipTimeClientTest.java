@@ -4,7 +4,9 @@ import net.bnijik.shipratecompare.Fixtures;
 import net.bnijik.shipratecompare.config.ShipTimeClientConfig;
 import net.bnijik.shipratecompare.config.ShipTimeClientLogger;
 import net.bnijik.shipratecompare.model.QuoteModel;
+import net.bnijik.shipratecompare.payload.externalapi.ShipTimeRateResponse;
 import net.bnijik.shipratecompare.payload.externalapi.ShipTimeShipRequest;
+import net.bnijik.shipratecompare.payload.externalapi.ShipTimeShipResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,7 @@ class ShipTimeClientTest {
                 .andExpect(content().json(Fixtures.SHIPTTIME_RATE_REQUEST_JSON))
                 .andRespond(withSuccess(Fixtures.SHIPTTIME_RATE_RESPONSE_JSON, MediaType.APPLICATION_JSON));
 
-        final var shipTimeRates = shipTimeClient.getRates(Fixtures.createShipTimeRateRequest());
+        ShipTimeRateResponse shipTimeRates = shipTimeClient.getRates(Fixtures.createShipTimeRateRequest());
 
         assertThat(shipTimeRates).isNotNull();
         assertThat(shipTimeRates).isNotNull();
@@ -73,8 +75,8 @@ class ShipTimeClientTest {
                 .andExpect(content().json(Fixtures.SHIPTTIME_SHIP_REQUEST_JSON))
                 .andRespond(withSuccess(Fixtures.SHIPTTIME_SHIP_RESPONSE_JSON, MediaType.APPLICATION_JSON));
 
-        final ShipTimeShipRequest shipTimeShipRequest = Fixtures.createShipTimeShipRequest();
-        final var response = shipTimeClient.createShipments(shipTimeShipRequest);
+        ShipTimeShipRequest shipTimeShipRequest = Fixtures.createShipTimeShipRequest();
+        ShipTimeShipResponse response = shipTimeClient.createShipments(shipTimeShipRequest);
 
         assertThat(response).isNotNull();
         assertThat(response.shipId()).isPositive();

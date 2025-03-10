@@ -19,7 +19,8 @@ public class ShipTimeIntegrationApplication {
     }
 
     private void askUserToOpenPage(String ourUrl) {
-        System.out.printf("Please open the following link in a browser: %s/index.html\n", ourUrl);
+        System.out.printf("Please open the following link in a browser: %s/index.html (press Ctrl + C to terminate)\n",
+                          ourUrl);
     }
 
     @EventListener

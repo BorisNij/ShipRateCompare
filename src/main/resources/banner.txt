@@ -1,4 +1,4 @@
-Welcome to Ship Rate Comparison Tool :)
+Welcome to the Ship Rate Comparison app :)
 
    ::  ::  ::  ::  ::  ::  ::  ::
 

@@ -25,6 +25,12 @@ client:
         enabled: true
         truncate-logs: true
         single-line: true
+cache:
+    rates-endpoint:
+        requests-cached: 100
+        expiry-minutes: 10
+
+
 
 shiptime:
     base-url: https://sandboxrestapi.shiptime.com

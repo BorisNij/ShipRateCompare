@@ -29,9 +29,9 @@ public class RateServiceImpl implements RateService {
 
     @Override
     public RateResponse getRates(RateRequest rateRequest) {
-        final ShipTimeRateRequest shipTimeRateRequest = rateResponseConverter.RateRequestToShipTimeRateRequest(
+        ShipTimeRateRequest shipTimeRateRequest = rateResponseConverter.RateRequestToShipTimeRateRequest(
                 rateRequest);
-        final ShipTimeRateResponse shipTimeRates;
+        ShipTimeRateResponse shipTimeRates;
         try {
             shipTimeRates = shipTimeClient.getRates(shipTimeRateRequest);
         } catch (HttpClientErrorException.Unauthorized e) {

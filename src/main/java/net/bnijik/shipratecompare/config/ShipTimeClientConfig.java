@@ -36,7 +36,7 @@ public class ShipTimeClientConfig {
     }
 
     @Bean
-    @Profile("!devlocal")
+    @Profile("sandbox")
     public RestClient loggingShipTimeClientBasicAuth(RestClient.Builder loggingShiTimeClientBuilder,
                                                      @Value("${shiptime.auth.username}") String username,
                                                      @Value("${shiptime.auth.password}") String password) {

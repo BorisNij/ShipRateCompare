@@ -64,7 +64,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         try {
             return objectMapper.readValue(body, ErrorModel.class);
         } catch (JsonProcessingException e) {
-            final String baseUrl = request.getRequestURL().toString();
+            String baseUrl = request.getRequestURL().toString();
             LOG.error("Failed to parse error response body for request URL {}: {}", baseUrl, body, e);
             return new ErrorModel(false, List.of("Error parsing external service response"));
         }
