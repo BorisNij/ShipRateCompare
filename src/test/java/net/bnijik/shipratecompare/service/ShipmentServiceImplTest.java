@@ -38,17 +38,17 @@ class ShipmentServiceImplTest {
         ShipTimeShipResponse shipTimeShipResponse = Fixtures.createShipTimeShipResponse();
         ShipResponse expectedResponse = Fixtures.createShipResponse();
 
-        when(shipResponseConverter.ShipRequestToShipTimeShipRequest(shipRequest)).thenReturn(shipTimeShipRequest);
+        when(shipResponseConverter.shipRequestToShipTimeShipRequest(shipRequest)).thenReturn(shipTimeShipRequest);
         when(shipTimeClient.createShipments(shipTimeShipRequest)).thenReturn(shipTimeShipResponse);
-        when(shipResponseConverter.ShipTimeShipResponseToShipResponse(shipTimeShipResponse)).thenReturn(expectedResponse);
+        when(shipResponseConverter.shipTimeShipResponseToShipResponse(shipTimeShipResponse)).thenReturn(expectedResponse);
 
         ShipResponse actualResponse = shipService.createShipments(shipRequest);
 
         assertNotNull(actualResponse);
         assertEquals(expectedResponse, actualResponse);
-        verify(shipResponseConverter, times(1)).ShipRequestToShipTimeShipRequest(shipRequest);
+        verify(shipResponseConverter, times(1)).shipRequestToShipTimeShipRequest(shipRequest);
         verify(shipTimeClient, times(1)).createShipments(shipTimeShipRequest);
-        verify(shipResponseConverter, times(1)).ShipTimeShipResponseToShipResponse(shipTimeShipResponse);
+        verify(shipResponseConverter, times(1)).shipTimeShipResponseToShipResponse(shipTimeShipResponse);
     }
 
 }

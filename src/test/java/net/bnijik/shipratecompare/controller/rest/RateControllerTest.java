@@ -22,6 +22,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class RateControllerTest {
 
     private final ObjectMapper OBJECT_MAPPER = Fixtures.OBJECT_MAPPER;
+
+    @Autowired
+    private ObjectMapper actualObjectMapper;
     @Autowired
     private MockMvc mockMvc;
     @MockitoBean
@@ -37,7 +40,7 @@ class RateControllerTest {
                                 .content(OBJECT_MAPPER.writeValueAsString(rateRequest)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(OBJECT_MAPPER.writeValueAsString(expectedResponse)));
+                .andExpect(content().json(actualObjectMapper.writeValueAsString(expectedResponse)));
     }
 
 

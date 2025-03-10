@@ -36,17 +36,17 @@ class RateServiceImplTest {
         ShipTimeRateResponse shipTimeRateResponse = Fixtures.createShipTimeRateResponse();
         RateResponse expectedResponse = Fixtures.createRateResponse();
 
-        when(rateResponseConverter.RateRequestToShipTimeRateRequest(rateRequest)).thenReturn(shipTimeRateRequest);
+        when(rateResponseConverter.rateRequestToShipTimeRateRequest(rateRequest)).thenReturn(shipTimeRateRequest);
         when(shipTimeClient.getRates(shipTimeRateRequest)).thenReturn(shipTimeRateResponse);
-        when(rateResponseConverter.ShipTimeRateResponseToRateResponse(shipTimeRateResponse)).thenReturn(expectedResponse);
+        when(rateResponseConverter.shipTimeRateResponseToRateResponse(shipTimeRateResponse)).thenReturn(expectedResponse);
 
         RateResponse actualResponse = rateService.getRates(rateRequest);
 
         assertNotNull(actualResponse);
         assertEquals(expectedResponse, actualResponse);
-        verify(rateResponseConverter, times(1)).RateRequestToShipTimeRateRequest(rateRequest);
+        verify(rateResponseConverter, times(1)).rateRequestToShipTimeRateRequest(rateRequest);
         verify(shipTimeClient, times(1)).getRates(shipTimeRateRequest);
-        verify(rateResponseConverter, times(1)).ShipTimeRateResponseToRateResponse(shipTimeRateResponse);
+        verify(rateResponseConverter, times(1)).shipTimeRateResponseToRateResponse(shipTimeRateResponse);
     }
 
 }

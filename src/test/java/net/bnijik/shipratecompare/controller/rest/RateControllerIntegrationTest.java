@@ -33,6 +33,9 @@ public class RateControllerIntegrationTest {
     @Value("${shiptime.base-url}")
     private String baseUrl;
 
+    private final ObjectMapper OBJECT_MAPPER = Fixtures.OBJECT_MAPPER;
+    @Autowired
+    private ObjectMapper actualObjectMapper;
 
     private boolean isServerAccessible() {
         try {
@@ -45,8 +48,6 @@ public class RateControllerIntegrationTest {
             return false;
         }
     }
-
-    private final ObjectMapper OBJECT_MAPPER = Fixtures.OBJECT_MAPPER;
 
     @Test
     void getRates_ShouldReturnSuccessfulResponse() throws Exception {
@@ -62,7 +63,7 @@ public class RateControllerIntegrationTest {
                 .getResponse()
                 .getContentAsString();
 
-        RateResponse actualResponse = OBJECT_MAPPER.readValue(responseJson, RateResponse.class);
+        RateResponse actualResponse = actualObjectMapper.readValue(responseJson, RateResponse.class);
         assertThat(actualResponse.availableRates()).isNotEmpty();
     }
 }

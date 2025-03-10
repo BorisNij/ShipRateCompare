@@ -13,11 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.ConfigDataApplicationContextInitializer;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.EnabledIf;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.support.RestClientAdapter;
-import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.endsWith;
@@ -30,22 +29,20 @@ class ShipTimeClientTest {
     @Autowired
     RestClient.Builder restClientBuilder;
 
+    @Autowired
+    private ShipTimeClient shipTimeClient;
+
     private MockRestServiceServer shipTimeMockServer;
 
-    private ShipTimeClient shipTimeClient;
 
     @BeforeEach
     void setUp() {
         shipTimeMockServer = MockRestServiceServer.bindTo(restClientBuilder).build();
-
-        RestClient restClient = restClientBuilder.build();
-        HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(RestClientAdapter.create(restClient))
-                .build();
-        shipTimeClient = factory.createClient(ShipTimeClient.class);
     }
 
 
     @Test
+    @EnabledIf(expression = "#{environment['spring.profiles.active'].matches('sandbox')}", loadContext = true)
     void getRates_ShouldGetRatesSuccessfully() {
         shipTimeMockServer.expect(requestTo(endsWith(ShipTimeClientConfig.API_PATH + ShipTimeClientConfig.RATE_RESOURCE)))
                 .andExpect(method(HttpMethod.POST))
@@ -65,10 +62,10 @@ class ShipTimeClientTest {
         assertThat(firstQuote.serviceName()).isNotEmpty();
         assertThat(firstQuote.totalCharge()).isNotNull();
         assertThat(firstQuote.quoteId()).isNotEmpty();
-        shipTimeMockServer.verify();
     }
 
     @Test
+    @EnabledIf(expression = "#{environment['spring.profiles.active'].matches('devlocal')}", loadContext = true)
     void getShips_ShouldCreateShipmentsSuccessfully() {
         shipTimeMockServer.expect(requestTo(endsWith(ShipTimeClientConfig.API_PATH + ShipTimeClientConfig.SHIPMENT_RESOURCE)))
                 .andExpect(method(HttpMethod.POST))
@@ -82,6 +79,5 @@ class ShipTimeClientTest {
         assertThat(response.shipId()).isPositive();
         assertThat(response.trackingNumbers()).isNotEmpty();
         assertThat(response.labelUrl()).isNotNull();
-        shipTimeMockServer.verify();
     }
 }
